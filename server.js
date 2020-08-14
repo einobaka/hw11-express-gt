@@ -10,6 +10,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Compiled App routes
 app.use('/api/db', require('./routes/api'));
+app.use('/notes', require('./routes/html'));
+
 
 // Port handling
 const PORT = process.env.PORT || 3000;
