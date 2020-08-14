@@ -4,7 +4,7 @@ const router = express.Router();
 const path = require('path');
 
 // Router paths to public folders
-router.get('/notes', (req, res) => {
+router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public', 'notes.html'));
 });
 

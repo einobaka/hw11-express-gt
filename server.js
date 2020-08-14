@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // HTML and API handling routes
-app.use('/', require('./routes/html'));
+app.use('/notes', require('./routes/html'));
 app.use('/', require('./routes/api'));
 
 // Port handling

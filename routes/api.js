@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../db/db.json')
+const data = require('../db/db')
 
 // Get request for api/notes
 router.get('/api/notes', (req, res) => {
@@ -9,12 +9,15 @@ router.get('/api/notes', (req, res) => {
 
 // Post request for api/notes
 router.post('/api/notes', (req, res) => {
-    // console.log(req.body.note)
-    // data.push(req.body.note)
+
+    const newEntry = {
+        title: req.body.title,
+        text: req.body.text
+    }
+
+    data.push(newEntry)
     res.json(data);
-})
-
-
+});
 
 
 
