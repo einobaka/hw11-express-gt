@@ -8,10 +8,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Compiled App routes
-app.use('/api/db', require('./routes/api'));
-app.use('/notes', require('./routes/html'));
-
+// HTML and API handling routes
+app.use('/', require('./routes/html'));
+app.use('/', require('./routes/api'));
 
 // Port handling
 const PORT = process.env.PORT || 3000;
