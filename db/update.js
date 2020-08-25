@@ -1,5 +1,4 @@
 const fs = require('fs');
-// const data = require('../db/db');
 const util = require("util");
 const uuid = require('uuid');
 
@@ -14,27 +13,37 @@ class Update {
     }
 
     write(entry) {
-        return writeFile("test.txt", entry)
+        return writeFile('db/db.json', JSON.stringify(entry))
     }
 
     view() {
         return this.read()
+            .then((notes) => {
+                let compiledNotes = [].concat(JSON.parse(notes))
+                return compiledNotes;
+            })
     }
 
+    create(entry) {
 
-    // view() {
-    //     let notes = [];
-    //     return notes = fs.readFile('db/db.json', 'utf8')
-    // }
+        const newEntry = {
+            id: uuid.v4(),
+            title: entry.title,
+            text: entry.text
+        }
 
-    // create(note) {
-    //     return fs.writeFile('db/db.json', JSON.stringify(note))
-    // }
+        return this.view() // return exact json
+            .then((entry) => [...entry, newEntry])
+            .then((updatedNotes) => this.write(updatedNotes))
 
+    }
 
     delete(id) {
-        let current = data.filter(entry => entry.id !== id)
-        return fs.writeFile('db/db.json', JSON.stringify(current))
+
+        return this.view() // return exact json
+            .then((notes) => notes.filter((filtered) => filtered.id !== id))
+            .then((filtered) => this.write(filtered))
+
     }
 
 }
