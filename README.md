@@ -23,7 +23,7 @@ npm run dev (for nodemon)
 
 ## Usage
 
-See video of usage on [YouTube]
+See video of usage on [YouTube](https://youtu.be/WxG5t0bgvzY)
 
 ---
 
